@@ -15,7 +15,6 @@ test('this is the first test', ()=>{
 
 it('this is the second test', ()=>{
     console.log('test 2');
-
 })
 
 describe('This is the first group', ()=>{
