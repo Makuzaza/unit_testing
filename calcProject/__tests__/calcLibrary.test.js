@@ -93,4 +93,3 @@ describe('Testingparameters are not numbers version 2', ()=>{
         expect(()=>sum(a,b)).toThrow('only numbers allowed');
     }); 
 });
-
