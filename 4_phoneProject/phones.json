@@ -3,18 +3,18 @@
         "firstname":"Leila",
         "lastname":"Hökki",
         "phones":[
-            {"type":"home", "number":"040-1234567"},
-            {"type":"work", "number":"09-1234567"},
-            {"type":"work", "number":"12345678910"}
+            {"type":"home", "number":"12345678"},
+            {"type":"work", "number":"876543221"},
+            {"type":"work", "number":"05040302"}
         ]
     },
     {
         "firstname":"Matt",
         "lastname":"River",
         "phones":[
-            {"type":"home", "number":"1234567-051"},
-            {"type":"work", "number":"1234567-09"},
-            {"type":"work", "number":"10123456747"}
+            {"type":"home", "number":"56743290"},
+            {"type":"mobile", "number":"0409812345"},
+            {"type":"work", "number":"2468159"}
         ]
     }
 ]
