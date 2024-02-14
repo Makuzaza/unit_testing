@@ -1,13 +1,13 @@
-# Test cases for getPersonsNumberByType
+# Test cases for getPersonsNumbersByType
 
-## **getPersonsNumberByType(firstname, lastname, type)**
+## **getPersonsNumbersByType(firstname,lastname,type)**
 
-Method returns an array of phon e numbers of given `type` belonging to given person with `firstname` and `lastname`
+Method returns an array of phone numbers of given `type` belonging to given person with `firstname` and `lastname`.
 
-For example, Leila Hökki and work
+For example Leila Hökki and work:
 
 ```json
-["876543221", "05040302"]
+["87654321", "05040302"]
 ```
 
 Matt River and mobile
@@ -16,9 +16,9 @@ Matt River and mobile
 ["0409812345"]
 ```
 
-If no person with given name is found, an empty array [] is returned
-If no number with given type is found, an empty array [] is returned
-If at least one parameter is missing, an ecxeption `'missing parameter'` is thrown.
+if no person with given name is found, an empty array [] is returned
+if no number with given type is found, an empty array [] is returned
+if at least one parameter is missing, an exception `'missing parameter'` is thrown.
 
 ## Tests
 
@@ -31,10 +31,10 @@ parameters: firstname='Leila', lastname='Hökki' and type='work'
 expect to return
 
 ```json
-["876543221", "05040302"]
+["87654321", "05040302"]
 ```
 
-### Test 2. Matt river and mobile
+## Test 2. Matt River and mobile
 
 returns
 
@@ -42,24 +42,24 @@ returns
 ["0409812345"]
 ```
 
-### Test 3. Wrong name or type
+## Test 3. Wrong name or type
 
 test with values:
-firstname: Matt, lastname: River, type: X
-firstname: Matt, lastname: X, type: mobile
-firstname: X, lastname: River, type: mobile
+firstname Matt, lastname: River type x
+firstname Matt lastname x type mobile
+firstname x lastname River type mobile
 
-returns empty array []
+returns empty array [].
 
-### Test 4. parameter missing
+## Test 4. parameter missing
 
 1 parameter missing: `Matt`, `River`
 2 parameters missing: `Matt`
 All parameters missing
 
-throws an exception `missing parameter`
+throws an exception 'missing parameter'
 
-### Test 5. Test with an empty string as a type
+## Test 5. Test with an empty string as type
 
 Modified data:
 
@@ -82,7 +82,7 @@ Modified data:
 ]
 ```
 
-Testing with Leila Hökki and type ''
+Testing with Leila Hökki and type ""
 
 returns
 

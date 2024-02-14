@@ -2,11 +2,9 @@
 
 ## **getTypes()**
 
-returns all phone types in an array. the type is added to the result array only once in the order they are found.
-If there are no phones or no persons, an empty array [] is returned.
-Type may be an empty string.
+returns all phone types in an array. The type is added to the result array only once in the order they are found. If there are no phones or no persons, an empty array [] is returned. Type may be an empty string.
 
-for example:
+For example:
 
 ```json
 ["home", "work", "mobile"]
@@ -22,21 +20,23 @@ expect to return
 
 ## Test 2: some type will be an empty string
 
+Modified data:
+
 ```json
 [
   {
     "firstname": "Leila",
     "lastname": "Hökki",
     "phones": [
-      { "type": "home", "number": "040-1234567" },
-      { "type": "", "number": "09-1234567" },
-      { "type": "work", "number": "12345678910" }
+      { "type": "home", "number": "12345678" },
+      { "type": "", "number": "87654321" },
+      { "type": "work", "number": "05040302" }
     ]
   },
   {
     "firstname": "Matt",
     "lastname": "River",
-    "phones": [{ "type": "home", "number": "1234567-051" }]
+    "phones": [{ "type": "work", "number": "2468159" }]
   }
 ]
 ```
@@ -44,10 +44,12 @@ expect to return
 expect to return
 
 ```json
-["home", "", "mobile"]
+["home", "", "work"]
 ```
 
-## Test 3: only home phones
+## Test 3. Only home phones
+
+Testdata:
 
 ```json
 [
@@ -55,14 +57,14 @@ expect to return
     "firstname": "Leila",
     "lastname": "Hökki",
     "phones": [
-      { "type": "home", "number": "040-1234567" },
-      { "type": "work", "number": "12345678910" }
+      { "type": "home", "number": "12345678" },
+      { "type": "home", "number": "05040302" }
     ]
   },
   {
     "firstname": "Matt",
     "lastname": "River",
-    "phones": [{ "type": "home", "number": "1234567-051" }]
+    "phones": [{ "type": "home", "number": "2468159" }]
   }
 ]
 ```
@@ -73,9 +75,8 @@ expect to return
 ["home"]
 ```
 
-## Test 4: no phones found
+## 4. No phones found
 
-returns an empty array []
 Testdata:
 
 ```json
@@ -95,7 +96,7 @@ Testdata:
 
 returns []
 
-## Test 5: no persons
+## Test 5. No persons
 
-Test data is []
+Testdata is []
 returns []

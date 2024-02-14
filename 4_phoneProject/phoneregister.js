@@ -42,4 +42,54 @@ module.exports = class PhoneRegister {
         }
         return numbersFound;
     }
+
+    getAllNumbersByType(type){
+        if (arguments.length < 1){
+            throw new Error('missing parameter');
+        } 
+
+        const numbersFound = []; 
+        for (const person of this.#register){
+            for (const phone of person.phones){
+                if(phone.type === type){
+                    numbersFound.push({
+                        firstname: person.firstname,
+                        lastname: person.lastname,
+                        number: {
+                            type: phone.type,
+                            tel: phone.number
+                        }
+                    });
+                }
+            }
+        }
+        return numbersFound;
+    }
+
+    getAllNumbers(){
+        const found = [];
+        for (const person of this.#register){
+            if(person.phones.length > 0){
+                 found.push(person)
+            }
+        }
+        return found;
+    }
+
+    getName(number){
+        if (arguments.length !== 1) return null;
+
+        for (const person of this.#register){
+            for (const phone of person.phones){
+                console.log('loop');
+                if(phone.number === number){
+                    return {
+                        firstname: person.firstname,
+                        lastname: person.lastname
+                    };
+                }
+            }
+        }
+        return null;
+    }
 }

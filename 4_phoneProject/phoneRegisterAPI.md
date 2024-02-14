@@ -2,11 +2,7 @@
 
 ## Data
 
-Data will be in a json file. A person can be a data array only ones.
-Names are unique so for example Leila Hökki can-t exist twice in the json.
-Phone number is unique and can be only once in the json.
-We also assume that the json file is valid and no field is missing.
-An empty phones array is ok, also all persons may be missing so tha data in on empty array.
+Data will be in a json file. A person can be in the data array only once. Names are unique so for example Leila Hökki can't exist twice in the json. Phone number is unique and can be only once in the json. We also assume that the json file is valid an no field is missing. An empty phones array is ok also all persons may be missing so the data in on empty array.
 
 ### phones.json
 
@@ -16,101 +12,82 @@ An empty phones array is ok, also all persons may be missing so tha data in on e
     "firstname": "Leila",
     "lastname": "Hökki",
     "phones": [
-      { "type": "home", "number": "040-1234567" },
-      { "type": "work", "number": "09-1234567" },
-      { "type": "work", "number": "12345678910" }
+      { "type": "home", "number": "12345678" },
+      { "type": "work", "number": "87654321" },
+      { "type": "work", "number": "05040302" }
     ]
   },
   {
     "firstname": "Matt",
     "lastname": "River",
     "phones": [
-      { "type": "home", "number": "1234567-051" },
-      { "type": "mobile", "number": "1234567-09" },
-      { "type": "work", "number": "10123456747" }
+      { "type": "home", "number": "56743290" },
+      { "type": "mobile", "number": "0409812345" },
+      { "type": "work", "number": "2468159" }
     ]
   }
 ]
 ```
 
-## class PhoneRegister
+## Class PhoneRegister
 
 ### **constructor(data)**
 
-Phones json array is passed in as a parameter 'data'. If parameter is missing throws an excepion `'phone data missing'`.
+Phones json array is passed in as a parameter `data`. If parameter is missing, throws an exception `'phone data missing'`
 
 ### **getTypes()**
 
-returns all phone types in an array. the type is added to the result array only once in the order they are found.
-If there are no phones or no persons, an empty array [] is returned.
-Type may be an empty string.
+returns all phone types in an array. The type is added to the result array only once in the order they are found. If there are no phones or no persons, an empty array [] is returned. Type may be an empty string.
 
-for example:
+For example:
 
 ```json
 ["home", "work", "mobile"]
 ```
 
-### **getPersonsNumbersByType(firstname, lastname, type)**
+### **getPersonsNumbersByType(firstname,lastname,type)**
 
-Method returns an array of phone numbers of given type `type` belonging to given person with `firstname` and `lastname`.
+Method returns an array of phone numbers of given `type` belonging to given person with `firstname` and `lastname`.
 
-For example Leila Hökki work numbers:
-
-```json
-["09-1234567", "12345678910"]
-```
-
-For example Matt River work numbers:
+For example Leila Hökki and work:
 
 ```json
-["1234567-09", "10123456747"]
+["87654321", "05040302"]
 ```
 
-If no person with given name is found, an empty array [] is returned.
-If no number with given type is found, an empty array [] is returned.
-If at least one parameter is missing, an exception `Missing parameter` is thrown.
+Matt River and mobile
+
+```json
+["0409812345"]
+```
+
+if no person with given name is found, an empty array [] is returned
+if no number with given type is found, an empty array [] is returned
+if at least one parameter is missing, an exception `'missing parameter'` is thrown.
 
 ### **getAllNumbersByType(type)**
 
-Returns an array of objects consisting of names and numbers of given type. If no number of given type is found, an empty array is returned.
+Returns an array of objects consisting of names and numbers of given type. If no number of given type is found, an empty array [] is returned.
 
 If a person have multiple numbers of the same type, each of them will be in it's own object.
 
-If a parameter is missing, the method throws an exception `missing paramaters`.
+If a parameter is missing, the method throws an exception `'missing parameter'`.
 
 The format of the object in the array is:
 
 ```json
-{ "firstname": "", "lastname": "", "phones": [{ "type": "", "tel": "" }] }
+{ "firstname": "", "lastname": "", "number": { "type": "", "tel": "" } }
 ```
 
 #### Example
 
-`type` work:
+`type` work
 
 ```json
 [
-  {
-    "firstname": "Leila",
-    "lastname": "Hökki",
-    "phones": { "type": "work", "tel": "09-1234567" }
-  },
-  {
-    "firstname": "Leila",
-    "lastname": "Hökki",
-    "phones": { "type": "work", "tel": "12345678910" }
-  },
-  {
-    "firstname": "Matt",
-    "lastname": "River",
-    "phones": { "type": "work", "tel": "1234567-09" }
-  },
-  {
-    "firstname": "Matt",
-    "lastname": "River",
-    "phones": { "type": "work", "tel": "12345678910" }
-  }
+    {"firstname":"Leila", "lastname":"Hökki", "number":{"type":"work", "tel":"87654321"}},
+    {"firstname":"Leila", "lastname":"Hökki", "number":{"type":"work", "tel":"05040302"}},
+    {"firstname":"Matt", "lastname":"River", "number":{"type":"work", "tel":"2468159"}
 ]
 ```
 
@@ -118,33 +95,32 @@ The format of the object in the array is:
 
 ```json
 [
-  {
-    "firstname": "Matt",
-    "lastname": "River",
-    "phones": { "type": "mobile", "tel": "1234567-09" }
-  }
+    {"firstname":"Matt", "lastname":"River", "number":{"type":"mobile", "tel":"0409812345"}
 ]
 ```
 
 ### **getAllNumbers()**
 
-Returns all phone numbers in an array, each as a person object of forms:
+Returns all phone numbers in an array, each as a person object of form:
 
 ```json
 { "firstname": "", "lastname": "", "phones": [] }
 ```
 
-The phone object in phone array is of form:
+The phone object in phones array is of form:
 
 ```json
 { "type": "", "number": "" }
 ```
 
-If a person doesn't have a phone (the phone field is an empty array), the person is not added into the result array. If all persons are missing an empty array is returned.
+If a person doesn't have a phone (the phone field is an empty array),
+the person is not added into the result array. If all persons are missing,
+an empty array is returned.
 
 ### **getName(number)**
 
-The method searches the given phone number from the registry. If the number is found, method returns the owner of that number as an object:
+The method searches the given phone number from the registry. If the number is
+found, method returns the owner of that number as on object:
 
 ```json
 { "firstname": "", "lastname": "" }
